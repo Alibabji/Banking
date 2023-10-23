@@ -3,3 +3,4 @@
 - Create acc
 - Withdrawal
 - Deposit
+- Show all info
