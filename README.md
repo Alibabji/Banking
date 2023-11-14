@@ -12,5 +12,5 @@
 - convert struct and functions to class
 
 ## Step 3
-- apply deep copy to the program
+- apply deep-copy to the program
 
