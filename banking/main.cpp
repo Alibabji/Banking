@@ -1,6 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <bits/stdc++.h>
-#include <algorithm>
 using namespace std;
 
 void PETC(); //Press Enter To Continue
@@ -48,9 +47,7 @@ public:
 	}
 	~Account()
 	{
-		cout << *name << endl;
 		delete name;
-		cout << "destructor\n";
 	}
 };
 
