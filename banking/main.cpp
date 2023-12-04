@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <bits/stdc++.h>
+#include <algorithm>
 using namespace std;
 
 void PETC(); //Press Enter To Continue
@@ -8,18 +9,26 @@ int id, amount,order=0;
 class Account
 {
 private:
-	string name;
+	string *name;
 	int balance;
 	int ID;
 public:
 	Account(int n) :balance(0), ID(n)
 	{	
-		cout << "이름: "; cin >> name;
-		cout << "입금액: "; cin >> balance;
+		cout << "이름: "; 
+		name = new string;
+		cin >> *name;
+		cout << "입금액: "; 
+		cin >> balance;
+	}
+	Account(const Account &copy):name(copy.name)
+	{
+		name = new string;
+		*name = *copy.name;
 	}
 	void showinfo()
 	{
-		cout << "계좌ID: " << ID << "\n이름: " << name << "\n잔액: " << balance << endl << endl;
+		cout << "계좌ID: " << ID << "\n이름: " << *name << "\n잔액: " << balance << endl << endl;
 	}
 	void deposit(int value)
 	{
@@ -37,10 +46,16 @@ public:
 			cout << "ERROR!! 출금액이 잔액보다 많습니다!!\n";
 		}
 	}
+	~Account()
+	{
+		cout << *name << endl;
+		delete name;
+		cout << "destructor\n";
+	}
 };
 
-Account* acc[1000] = { NULL }; //creae 1000 account address
-int acclist[1000];	//save account ID
+Account* acc[1000]; //creae 1000 account address
+int acclist[1000];
 
 void ShowAllInfo()
 {
@@ -52,6 +67,10 @@ void ShowAllInfo()
 
 int main(void)
 {
+	fill_n(acclist, 1000, -1);
+	for (int i = 0; i < 1000; i++)
+		acc[i] = NULL;
+
 	int num;
 	while (true)
 	{
@@ -85,6 +104,10 @@ int main(void)
 			ShowAllInfo();
 			break;
 		case 5:
+			for (int i = 0; i < 1||acclist[i]!=-1; i++)
+			{
+				delete acc[acclist[i]];
+			}
 			return 0;
 		}
 		PETC();
