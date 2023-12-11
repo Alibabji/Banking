@@ -20,19 +20,23 @@ public:
 		cout << "입금액: "; 
 		cin >> balance;
 	}
+
 	Account(const Account &copy):name(copy.name)
 	{
 		name = new string;
 		*name = *copy.name;
 	}
-	void showinfo()
+
+	void showinfo() const
 	{
 		cout << "계좌ID: " << ID << "\n이름: " << *name << "\n잔액: " << balance << endl << endl;
 	}
+
 	void deposit(int value)
 	{
 		balance += value;
 	}
+
 	void withdrawal(int value)
 	{
 		if (balance >= value)
@@ -45,6 +49,7 @@ public:
 			cout << "ERROR!! 출금액이 잔액보다 많습니다!!\n";
 		}
 	}
+
 	~Account()
 	{
 		delete name;
