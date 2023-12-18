@@ -29,16 +29,11 @@ public:
 		*name = *copy.name;
 	}
 
-	void showinfo() const
-	{
-		cout << "계좌ID: " << ID << "\n이름: " << *name << "\n잔액: " << balance << endl << endl;
-	}
-
 	void deposit(int value)
 	{
 		balance += value;
 	}
-
+	virtual void showInfo()const;
 	void withdrawal(int value)
 	{
 		if (balance >= value)
@@ -55,6 +50,64 @@ public:
 	~Account()
 	{
 		delete name;
+	}
+};
+
+void Account::showInfo() const
+{
+	cout << "계좌ID: " << ID << "\n이름: " << *name << "\n잔액: " << balance << endl;
+}
+
+class NormalAcc :public Account
+{
+private:
+	/*string* name;
+	int balance;
+	int ID;*/
+	double interestRate;
+public:
+	NormalAcc(int n) :Account(n)
+	{
+		cout << "이자율: ";
+		cin >> interestRate;
+	}
+	void showInfo() const
+	{
+		Account::showInfo();
+		cout << "이자율: " << interestRate<<"%\n\n";
+	}
+};
+
+class HighCreditAcc :public Account
+{
+private:
+	double interestRate;
+	double creditRate;
+	int creditScore;
+public:
+	HighCreditAcc(int n) :Account(n)
+	{
+		cout << "이자율: ";
+		cin >> interestRate;
+		cout << "신용등급(1toA, 2toB, 3toC): ";
+		cin >> creditScore;
+		switch (creditScore)
+		{
+		case 1:
+			creditRate= 7;
+			break;
+		case 2:
+			creditRate= 4;
+			break;
+		default:
+			creditRate= 2;
+		}
+	}
+	void showInfo() const
+	{
+		Account::showInfo();
+		cout << "이자율: " << interestRate << "%\n";
+		printf("신용등급: %c\n\n", creditScore + 64);
 	}
 };
 
@@ -76,19 +129,32 @@ public:
 	{
 		cout << "-----Menu-----\n1. 개좌계설\n2. 입금\n3. 출금\n4. 계좌번호 전체 출력\n5. 프로그램 종료\n선택: ";
 	}
-
 	void AddAccount()
 	{
-		cout << "[계좌계설]\n계좌ID: ";
-		cin >> id;
-		accID.push_back(id);
-		accList[accNum++] = new Account(id);
+		cout << "[계좌종류선택]\n1.보통예금계좌 2.신용신뢰계좌\n선택: ";
+		int accType;
+		cin >> accType;
+		accType -= 1;
+		if (accType == 1)
+		{
+			cout << "[신용신뢰계좌 개설]\n계좌 ID: ";
+			cin >> id;
+			accID.push_back(id);
+			accList[accNum++] = new HighCreditAcc(id);
+		}
+		else
+		{
+			cout << "[보통예금계좌 개설]\n계좌 ID: ";
+			cin >> id;
+			accID.push_back(id);
+			accList[accNum++] = new NormalAcc(id);
+		}
 	}
 
 	void ShowAllInfo() const
 	{
 		for (int i = 0; i < accNum; i++)
-			accList[i]->showinfo();
+			accList[i]->showInfo();
 	}
 
 	void Deposit()
