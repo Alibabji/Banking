@@ -1,0 +1,10 @@
+#pragma once
+#ifndef __BANKING_COMMON_DECL_H__
+#define __BANKING_COMMON_DECL_H__
+
+enum{CREATE=1, DEPOSIT, WITHDRAWAL, SHOWINFO, EXIT};
+
+enum{NORMAL=1, HIGHCREDIT};
+
+enum{CREDIT_A=7,CREDIT_B=4,CREDIT_C=2};
+#endif
