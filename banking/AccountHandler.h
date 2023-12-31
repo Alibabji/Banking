@@ -3,11 +3,13 @@
 #define __ACCOUNTHANDLER_H__
 #include <vector>
 #include "Account.h"
+#include "BoundCheckPointArray.h"
 
 class AccountHandler
 {
 private:
-	Account* accList[1000];
+	BoundCheckPointArray accList;
+	//Account* accList[1000];
 	int accNum, id, amount;
 	vector<int> accID;
 public:
