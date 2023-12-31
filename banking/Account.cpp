@@ -44,3 +44,12 @@ void Account::showInfo() const
 {
 	cout << "계좌ID: " << ID << "\n이름: " << *name << "\n잔액: " << balance << endl;
 }
+
+Account& Account::operator=(const Account& ref)
+{
+	name = new string;
+	*name = *ref.name;
+	balance = ref.balance;
+	ID = ref.ID;
+	return *this;
+}

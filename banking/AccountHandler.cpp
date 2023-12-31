@@ -7,7 +7,7 @@
 
 AccountHandler::AccountHandler() :accNum(0), id(0)
 {
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < MAX_ACC; i++)
 		accList[i] = NULL;
 	accID = {};
 };
