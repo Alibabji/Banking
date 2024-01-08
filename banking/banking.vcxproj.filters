@@ -24,9 +24,6 @@
     <ClCompile Include="AccountHandler.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="BoundCheckPointArray.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h">
@@ -44,7 +41,7 @@
     <ClInclude Include="BankingCommonDecl.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="BoundCheckPointArray.h">
+    <ClInclude Include="BoundCheckArray.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
