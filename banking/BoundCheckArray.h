@@ -61,5 +61,4 @@ BoundCheckArray<T>::~BoundCheckArray()
 {
 	delete[]arr;
 }
-
 #endif
