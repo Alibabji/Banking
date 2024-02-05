@@ -16,20 +16,47 @@ private:
 public:
 	HighCreditAcc(int n) :Account(n)
 	{
-		cout << "이자율: ";
-		cin >> interestRate;
-		cout << "신용등급(1toA, 2toB, 3toC): ";
-		cin >> creditScore;
-		switch (creditScore)
+		while (true)
 		{
-		case 1:
-			creditRate = CREDIT_A;
-			break;
-		case 2:
-			creditRate = CREDIT_B;
-			break;
-		default:
-			creditRate = CREDIT_C;
+			cout << "이자율: ";
+			cin >> interestRate;
+			try
+			{
+				if (interestRate < 0)
+					throw interestRate;
+				while (true)
+				{
+					try
+					{
+						cout << "신용등급(1toA, 2toB, 3toC): ";
+						cin >> creditScore;
+						switch (creditScore)
+						{
+						case 1:
+							creditRate = CREDIT_A;
+							break;
+						case 2:
+							creditRate = CREDIT_B;
+							break;
+						case 3:
+							creditRate = CREDIT_C;
+							break;
+						default:
+							throw creditScore;
+						}
+						break;
+					}
+					catch (int qwer)
+					{
+						cout << "다시 선택하십시오!!\n";
+					}
+				}
+				break;
+			}
+			catch (double asdf)
+			{
+				cout << "다시 선택하십시오!!\n";
+			}
 		}
 	}
 	void showInfo() const

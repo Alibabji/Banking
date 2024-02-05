@@ -7,8 +7,22 @@ Account::Account(int n) :balance(0), ID(n)
 	cout << "이름: ";
 	name = new string;
 	cin >> *name;
-	cout << "입금액: ";
-	cin >> balance;
+	while (true)
+	{
+		cout << "입금액: ";
+		cin >> balance;
+		try
+		{
+			if (balance < 0)
+				throw 0;
+			break;
+		}
+		catch (...)
+		{
+			cout << "0보다 큰 값을 입력하시오!!\n";
+			continue;
+		}
+	}
 }
 
 Account::Account(const Account& copy) :name(copy.name)
@@ -24,12 +38,14 @@ void Account::deposit(int value)
 
 void Account::withdrawal(int value)
 {
-	if (balance >= value)
+	try
 	{
+		if (balance <= value)
+			throw 0;
 		balance -= value;
 		cout << "출금완료\n";
 	}
-	else
+	catch (...)
 	{
 		cout << "ERROR!! 출금액이 잔액보다 많습니다!!\n";
 	}
